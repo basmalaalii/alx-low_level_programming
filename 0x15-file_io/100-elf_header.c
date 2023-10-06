@@ -1,3 +1,4 @@
+#include "main.h"
 #include <elf.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -114,7 +115,8 @@ void print_data(unsigned char *e_ident)
 /**
  *  * print_version - Prints the version of an ELF header.
  *   * @e_ident: A pointer to an array containing the ELF version.
- *    */
+ *
+ */
 void print_version(unsigned char *e_ident)
 {
 	 printf(" Version: %d",
@@ -177,13 +179,13 @@ void print_osabi(unsigned char *e_ident)
 }
 
 /**
- * print_abi - Prints the ABI version of an ELF header.
- * @e_ident: A pointer to an array containing the ELF ABI version.
+ * print_abiversion - Prints ELF ABI version
+ * @h: the ELF header struvt
  */
-void print_abi(unsigned char *e_ident)
+void print_abiversion(Elf64_Ehdr h)
 {
-	printf(" ABI Version: %d\n",
-		e_ident[EI_ABIVERSION]);
+	printf(" ABI Version:                      %d\n",
+		h.e_ident[EI_ABIVERSION]);
 }
 
 /**
